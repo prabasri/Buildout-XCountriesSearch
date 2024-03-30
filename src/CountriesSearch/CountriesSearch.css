@@ -1,0 +1,33 @@
+.navbar {
+  background-color: rgb(214, 225, 235);
+  box-shadow: 0 0 4px 0;
+  height: 50px;
+}
+
+input {
+  width: 400px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 160px 160px 160px 160px 160px 160px 160px;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px;
+}
+
+.countryCard {
+  width: 160px;
+  height: auto; /* To fit the large country names inside the card */
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding-top: 10px;
+}
+
+.countryName {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
