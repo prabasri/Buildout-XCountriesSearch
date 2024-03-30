@@ -6,7 +6,6 @@ export const CountriesSearch = () => {
 
   const [searchValue, setSearchValue] = useState("");
   const [countries, setCountries] = useState([]);
-  const [timer, setTimer] = useState(null);
 
   const getCountries = async() => {
     try {
@@ -50,16 +49,17 @@ export const CountriesSearch = () => {
 
   useEffect(() => {
     setSearchValue(searchValue);
-  }, [searchValue]);
+  }, [searchValue]); 
+  
+  // There are a few reasons why the search value might be updating one value behind in React. One possibility is that the state update is being deferred until after the function that updates the state has finished executing. This can happen if the state update is called asynchronously. For example, if the state update is called inside a callback function, it will not be executed until the callback function has finished executing.
 
-  const handleSearch =() => {
-    
-  }
+  // To fix this, you can try using the useEffect hook. The useEffect hook allows you to run code after the component has rendered. This means that you can use the useEffect hook to update the state after the component has rendered, ensuring that the state is always up-to-date.
 
   return (
     <div>
       <div className="navbar">
         <input 
+          type="text"
           value={searchValue} 
           onChange={e => setSearchValue(e.target.value)} 
           placeholder="Search for countries..."
@@ -68,15 +68,15 @@ export const CountriesSearch = () => {
       <div className="cards-grid">
         {searchValue.length ? 
           (countries.length ?
-            (countries.map((country) => {
-              console.log("Entered", countries.length);
+            countries.map((country) => {
+              // console.log("Entered", countries.length);
               return (
               <div className="countryCard" key={country.name.common}>
                 <img src={country.flags.png} alt={country.flags.alt} width={90} height={80}/>
                 <p className="countryName">{country.name.common}</p>
               </div>
               )
-            })) : null) :
+            }) : null) :
             countries.map((country) => {
               return (
               <div className="countryCard" key={country.name.common}>
